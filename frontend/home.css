@@ -84,8 +84,10 @@ body {
 }
 
 .wf-arrow {
-  font-size: 28px;
-  color: #ffccff;
+  font-size: 48px;       
+  color: #2b1055;        
+  font-weight: bold;     
+  margin: 0 10px;        
 }
 
 /* Existing layout */
