@@ -1,42 +1,95 @@
-<!-- home.html -->
-<div class="arrow">→</div>
-<div class="node" data-id="api">API (waiter)</div>
-<div class="arrow">→</div>
-<div class="node" data-id="server">Server</div>
-<div class="arrow">→</div>
-<div class="node" data-id="db">DB (chef)</div>
-<div class="arrow">→</div>
-<div class="node" data-id="done">Response</div>
-</div>
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRODUCT SEARCH — Spring Boot API Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="title">PRODUCT SEARCH</h1>
+      <p class="subtitle">SPRING BOOT API PROJECT — TRY NOW</p>
+    </div>
+  </header>
 
+  <main class="container">
+    <!-- Search panel -->
+    <section class="search-panel card">
+      <form id="searchForm" class="search-form" autocomplete="off">
+        <div class="left">
+          <input id="q" type="text" placeholder="Search food, e.g. Masala Dosa, Burger..." />
+        </div>
 
-<section class="results-panel">
-<div id="results" class="results-grid"></div>
+        <div class="right">
+          <select id="category" aria-label="Category">
+            <option value="">All categories</option>
+            <option value="meal">Meal</option>
+            <option value="snack">Snack</option>
+            <option value="drink">Drink</option>
+            <option value="dessert">Dessert</option>
+          </select>
 
+          <select id="cuisine" aria-label="Cuisine">
+            <option value="">All cuisines</option>
+            <option value="Indian">Indian</option>
+            <option value="Italian">Italian</option>
+            <option value="Asian">Asian</option>
+            <option value="American">American</option>
+            <option value="MiddleEastern">Middle Eastern</option>
+          </select>
 
-<details id="debugPanel" class="debug-panel">
-<summary>Show API request & response</summary>
-<div class="debug-body">
-<div class="reqline"><strong>Request:</strong> <span id="reqUrl">-</span></div>
-<div class="statusline"><strong>Status:</strong> <span id="status">-</span> • <strong>Time:</strong> <span id="timeMs">-</span> ms</div>
-<pre id="responseJson" class="json">-</pre>
-<div class="debug-actions">
-<button id="copyCurl" class="btn">Copy cURL</button>
-<button id="openH2" class="btn">Open H2 Console</button>
-</div>
-</div>
-</details>
-</section>
+          <div class="price-range" aria-hidden="true">
+            <input id="minPrice" type="number" placeholder="min" />
+            <input id="maxPrice" type="number" placeholder="max" />
+          </div>
 
+          <label class="veg-toggle"><input id="veg" type="checkbox"/> Veg only</label>
 
-<footer class="footer card">
-<div>customer → waiter → chef (friendly demo)</div>
-<div class="small">Make sure your Spring Boot API is running at <code>http://localhost:8080</code>. If CORS errors occur, enable CORS on backend.</div>
-</footer>
-</main>
+          <button id="searchBtn" class="btn primary" type="submit">TRY NOW</button>
+        </div>
+      </form>
 
+      <!-- Timeline (subtle until a search runs) -->
+      <div class="timeline" id="timeline" aria-hidden="false">
+        <div class="node" data-id="client">Client</div>
+        <div class="arrow">→</div>
+        <div class="node" data-id="api">API (waiter)</div>
+        <div class="arrow">→</div>
+        <div class="node" data-id="server">Server</div>
+        <div class="arrow">→</div>
+        <div class="node" data-id="db">DB (chef)</div>
+        <div class="arrow">→</div>
+        <div class="node" data-id="done">Response</div>
+      </div>
+    </section>
 
-<script src="app.js" defer></script>
+    <!-- Results + Debug -->
+    <section class="results-panel">
+      <div id="results" class="results-grid" aria-live="polite"></div>
+
+      <details id="debugPanel" class="debug-panel">
+        <summary>Show API request &amp; response</summary>
+        <div class="debug-body">
+          <div class="reqline"><strong>Request:</strong> <span id="reqUrl">-</span></div>
+          <div class="statusline"><strong>Status:</strong> <span id="status">-</span> • <strong>Time:</strong> <span id="timeMs">-</span> ms</div>
+          <pre id="responseJson" class="json">-</pre>
+          <div class="debug-actions">
+            <button id="copyCurl" class="btn">Copy cURL</button>
+            <button id="openH2" class="btn">Open H2 Console</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <footer class="footer card">
+      <div>customer → waiter → chef (friendly demo)</div>
+      <div class="small">Make sure your Spring Boot API is running at <code>http://localhost:8080</code>. If CORS errors occur, enable CORS on the backend.</div>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
