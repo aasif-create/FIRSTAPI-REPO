@@ -6,28 +6,89 @@ body {
   color: #fff;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-}
-
-.hero {
-  padding: 38px 20px 26px;
   text-align: center;
 }
 
+/* Hero Section */
+.hero {
+  padding: 40px 20px 30px;
+}
+
 .title {
-  font-size: 36px;
+  font-size: 72px;
   margin: 0;
-  letter-spacing: 1px;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-family: Algerian, "Poppins", system-ui, sans-serif;
+  color: #af0eb1;
+  text-shadow: 0 0 20px rgba(175, 14, 177, 0.7);
+  text-decoration: underline;
+  text-underline-offset: 10px;
 }
 
 .subtitle {
-  margin-top: 8px;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
+  margin-top: 16px;
+  font-size: 38px;
+  font-family: Algerian, "Poppins", sans-serif;
+  font-weight: 700;
+  color: #e4e2e5;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-decoration: underline;
+  text-underline-offset: 8px;
 }
 
+.tagline {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 12px 0;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Workflow Section */
+.workflow {
+  margin: 40px auto;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+
+.workflow-title {
+  font-size: 34px;
+  margin-bottom: 20px;
+  color: #ffccff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.workflow-box {
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.wf-step {
+  background: #a020f0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.wf-arrow {
+  font-size: 28px;
+  color: #ffccff;
+}
+
+/* Existing layout */
 .container {
   max-width: 1100px;
   margin: 22px auto;
