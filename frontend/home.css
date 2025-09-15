@@ -47,48 +47,36 @@ body {
 }
 
 /* Workflow Section */
-.workflow {
-  margin: 40px auto;
-  max-width: 900px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
-}
-
-.workflow-title {
-  font-size: 34px;
-  margin-bottom: 20px;
-  color: #ffccff;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 6px;
-}
-
 .workflow-box {
-  font-size: 24px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+    width: 95%;           /* make it wider */
+    max-width: 1400px;    /* maximum width */
+    margin: 40px auto;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-around;  /* spread evenly */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 .wf-step {
-  background: #a020f0;
-  padding: 12px 20px;
-  border-radius: 10px;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    background: #8e2de2;  /* purple gradient can be added */
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    min-width: 140px;
 }
 
 .wf-arrow {
-  font-size: 48px;       
-  color: #2b1055;        
-  font-weight: bold;     
-  margin: 0 10px;        
+    font-size: 32px;      /* bigger arrows */
+    color: #1a0a2e;       /* darker black/purple */
+    margin: 0 15px;
 }
+
 
 /* Existing layout */
 .container {
