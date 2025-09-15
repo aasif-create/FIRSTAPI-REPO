@@ -1,0 +1,42 @@
+<!-- home.html -->
+<div class="arrow">→</div>
+<div class="node" data-id="api">API (waiter)</div>
+<div class="arrow">→</div>
+<div class="node" data-id="server">Server</div>
+<div class="arrow">→</div>
+<div class="node" data-id="db">DB (chef)</div>
+<div class="arrow">→</div>
+<div class="node" data-id="done">Response</div>
+</div>
+</section>
+
+
+<section class="results-panel">
+<div id="results" class="results-grid"></div>
+
+
+<details id="debugPanel" class="debug-panel">
+<summary>Show API request & response</summary>
+<div class="debug-body">
+<div class="reqline"><strong>Request:</strong> <span id="reqUrl">-</span></div>
+<div class="statusline"><strong>Status:</strong> <span id="status">-</span> • <strong>Time:</strong> <span id="timeMs">-</span> ms</div>
+<pre id="responseJson" class="json">-</pre>
+<div class="debug-actions">
+<button id="copyCurl" class="btn">Copy cURL</button>
+<button id="openH2" class="btn">Open H2 Console</button>
+</div>
+</div>
+</details>
+</section>
+
+
+<footer class="footer card">
+<div>customer → waiter → chef (friendly demo)</div>
+<div class="small">Make sure your Spring Boot API is running at <code>http://localhost:8080</code>. If CORS errors occur, enable CORS on backend.</div>
+</footer>
+</main>
+
+
+<script src="app.js" defer></script>
+</body>
+</html>
