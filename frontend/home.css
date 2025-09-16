@@ -2,12 +2,13 @@
 body {
   margin: 0;
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background: linear-gradient(135deg, #2b1055 0%, #2b1055 10%, #702963 40%, #ff2d95 100%);
-  color: #fff;
-  min-height: 100vh;
+  background: #000;              /* pure black background */
+  color: #fff;                   /* white text for readability */
+  min-height: 100vh;             /* full screen height */
   -webkit-font-smoothing: antialiased;
   text-align: center;
 }
+
 
 /* Hero Section */
 .hero {
@@ -145,36 +146,102 @@ body {
 
 
 /* Workflow Section */
-.workflow-box {
-    width: 95%;           /* make it wider */
-    max-width: 1400px;    /* maximum width */
-    margin: 40px auto;
-    padding: 30px 20px;
-    display: flex;
-    justify-content: space-around;  /* spread evenly */
-    align-items: center;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+:root{
+  --orange-1: #ff8a00;
+  --orange-2: #ffb347;
+  --box-text: #fff;
+  --arrow-color: #0b0b0b; /* bold black arrow */
+  --box-radius: 10px;
+  --box-padding: 14px 22px;
+  --box-font-size: 16px;
 }
 
-.wf-step {
-    background: #8e2de2;  /* purple gradient can be added */
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-    min-width: 140px;
+/* Page & wrapper */
+body{
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 24px;
+  background: #fafafa;
+  color: #222;
+}
+.workflow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px;
 }
 
-.wf-arrow {
-    font-size: 32px;      /* bigger arrows */
-    color: #1a0a2e;       /* darker black/purple */
-    margin: 0 15px;
+/* Flow container */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  padding: 8px;
 }
 
+/* horizontal (default) */
+.flow.horizontal {
+  flex-direction: row;
+}
+
+/* vertical variation */
+.flow.vertical {
+  flex-direction: column;
+}
+
+/* Box style */
+.box{
+  background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+  color: var(--box-text);
+  border-radius: var(--box-radius);
+  padding: var(--box-padding);
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  min-width: 140px;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--box-font-size);
+}
+
+/* Arrow style (big bold black arrow) */
+.arrow{
+  font-size: 36px;
+  color: var(--arrow-color);
+  font-weight: 900;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  padding: 0 6px;
+}
+
+/* Vertical arrows rotated - keep the same glyph but rotated */
+.arrow.vertical{
+  transform: rotate(90deg);
+  font-size: 36px;
+  margin: 6px 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 920px){
+  .box{ min-width: 120px; padding: 12px 16px; font-size: 14px; }
+  .arrow{ font-size: 28px; }
+}
+
+/* If overflow, allow wrapping nicely by switching to column on small screens */
+@media (max-width: 640px){
+  .flow.horizontal{
+    flex-direction: column;
+  }
+  .arrow{ transform: rotate(90deg); }
+  .arrow.vertical{ transform: rotate(90deg); } /* ensure vertical arrows remain correct */
+}
 
 /* Existing layout */
 .container {
