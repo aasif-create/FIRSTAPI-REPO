@@ -1,10 +1,10 @@
 /* home.css */
 body {
+  background-color: #000;
   margin: 0;
-  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background: #000;              /* pure black background */
-  color: #fff;                   /* white text for readability */
-  min-height: 100vh;             /* full screen height */
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;              
+  color: #fff;                   
+  min-height: 100vh;             
   -webkit-font-smoothing: antialiased;
   text-align: center;
 }
@@ -150,19 +150,12 @@ body {
   --orange-1: #ff8a00;
   --orange-2: #ffb347;
   --box-text: #fff;
-  --arrow-color: #0b0b0b; /* bold black arrow */
+  --arrow-color: #e9e911; /* bold black arrow */
   --box-radius: 10px;
   --box-padding: 14px 22px;
   --box-font-size: 16px;
 }
 
-/* Page & wrapper */
-body{
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  margin: 24px;
-  background: #fafafa;
-  color: #222;
-}
 .workflow-wrapper {
   display: flex;
   justify-content: center;
@@ -174,6 +167,7 @@ body{
 
 /* Flow container */
 .flow {
+  background-color:#070b04;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -198,7 +192,7 @@ body{
   border-radius: var(--box-radius);
   padding: var(--box-padding);
   font-weight: 700;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 16px rgba(254, 252, 252, 0.12);
   min-width: 140px;
   text-align: center;
   white-space: nowrap;
@@ -219,13 +213,6 @@ body{
   justify-content: center;
   user-select: none;
   padding: 0 6px;
-}
-
-/* Vertical arrows rotated - keep the same glyph but rotated */
-.arrow.vertical{
-  transform: rotate(90deg);
-  font-size: 36px;
-  margin: 6px 0;
 }
 
 /* Responsive tweaks */
@@ -251,10 +238,10 @@ body{
 }
 
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(135deg, #e4b25a, #e3b13c);
   border-radius: 14px;
   padding: 14px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+  
 }
 
 .search-panel {
