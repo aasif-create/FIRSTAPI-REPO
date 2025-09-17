@@ -4,6 +4,7 @@ import com.firstapi.productsearch_api.model.Item;
 import com.firstapi.productsearch_api.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,7 +17,8 @@ public class ItemService {
 
     public List<Item> search(String q) {
         if (q == null || q.trim().isEmpty()) {
-            return repo.findAll();
+            // return empty list instead of all items
+            return Collections.emptyList();
         }
         return repo.findByNameIgnoreCaseContaining(q.trim());
     }

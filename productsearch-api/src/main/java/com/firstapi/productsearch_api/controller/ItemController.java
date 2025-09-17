@@ -15,10 +15,10 @@ public class ItemController {
         this.svc = svc;
     }
 
-    // GET /api/search?q=...
+    // GET /api/fooditem/search?query=...
     @GetMapping("/fooditem/search")
-    public List<Item> search(@RequestParam(value = "q", required = false) String q) {
-        return svc.search(q);
+    public List<Item> search(@RequestParam(value = "query", required = false) String query) {
+        return svc.search(query);
     }
 
     // GET /api/items/{id}
@@ -27,4 +27,3 @@ public class ItemController {
         return svc.findById(id);
     }
 }
-
