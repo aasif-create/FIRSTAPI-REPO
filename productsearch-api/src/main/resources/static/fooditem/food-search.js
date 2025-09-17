@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Call backend API
-            const response = await fetch(`/fooditem/search?query=${encodeURIComponent(query)}`);
+            const response = await fetch(`/api/fooditem/search?query=${encodeURIComponent(query)}`);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
