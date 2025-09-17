@@ -11,4 +11,3 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // simple name search (case-insensitive contains)
     List<Item> findByNameIgnoreCaseContaining(String q);
 }
-
