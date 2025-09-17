@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRODUCT SEARCH — Spring Boot API Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="title">FOOD PRODUCTS SEARCH</h1>
+      <p class="subtitle">SPRING BOOT API PROJECT</p>
+      <p class="tagline"> "A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
+      <p class="tagline"> ->Using Food Item Searching Example </p>
+    </div>
+    <a class="try-btn" href="/fooditem/search" role="button" aria-label="Try now — go to food search">
+      <span class="btn-icon" aria-hidden="true">🍔</span>
+      <span class="btn-text">TRY NOW</span>
+    </a>
+  </header>
+
+  <section class="workflow card">
+    <h2 class="workflow-title">Basic Workflow of a product search</h2>
+    <div class="workflow-box">
+    <section class="workflow card">
+    <div class="flow vertical" id="flow-vertical">
+      <div class="box">User [Searches an item ]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Frontend [Shows typing box & sends search]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">API Controller [Passes the request inside]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Service Layer [Asks database for details]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Repository Layer/Data Access Layer [Runs query to fetch data]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Database [Finds matching items]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Repository Layer/Data Access Layer [Sends data back to service]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Service Layer [Collects and organizes results]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">API Controller [Sends results back]</div>
+      <div class="arrow vertical">↓</div>
+
+      <div class="box">Frontend [Displays results to user]</div>
+      <div class="arrow vertical">↓</div>
+      <div class="box">User [Views / selects item]</div>
+    </div>
+  </div>
+</section>
+
+
+  </section>
+</body>
+</html>
