@@ -1,5 +1,5 @@
 INSERT INTO items (name, category, price, rating, image_url, available) VALUES
-('Idli', 'South Indian', 30.0, 4.5, 'https://via.placeholder.com/120?text=Idli', true),
+('Idli', 'South Indian', 30.0, 4.5),
 ('Masala Dosa', 'South Indian', 70.0, 4.7, 'https://via.placeholder.com/120?text=Dosa', true),
 ('Sambar Vada', 'South Indian', 45.0, 4.2, 'https://via.placeholder.com/120?text=Vada', true),
 ('Chicken Biryani', 'Biryani', 150.0, 4.8, 'https://via.placeholder.com/120?text=Biryani', true),
