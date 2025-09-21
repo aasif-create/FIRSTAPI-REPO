@@ -1,5 +1,5 @@
 INSERT INTO items (name, category, price, rating, image_url, available) VALUES
-('Idli', 'South Indian', 30.0, 4.5, 'https://via.placeholder.com/120?text=Idli', true),
+('idli', 'South Indian', 30.0, 4.5, 'https://via.placeholder.com/120?text=Idli', true),
 ('Masala Dosa', 'South Indian', 70.0, 4.7, 'https://via.placeholder.com/120?text=Dosa', true),
 ('Sambar Vada', 'South Indian', 45.0, 4.2, 'https://via.placeholder.com/120?text=Vada', true),
 ('Chicken Biryani', 'Biryani', 150.0, 4.8, 'https://via.placeholder.com/120?text=Biryani', true),
@@ -10,8 +10,5 @@ INSERT INTO items (name, category, price, rating, image_url, available) VALUES
 ('Uttapam', 'South Indian', 80.0, 4.3, 'https://via.placeholder.com/120?text=Uttapam', true),
 ('Gulab Jamun', 'Dessert', 50.0, 4.4, 'https://via.placeholder.com/120?text=Gulab+Jamun', true);
 
-UPDATE items
-SET image_url = '/images/idly.jpg'
-WHERE name = 'Idli';
 
 
