@@ -10,5 +10,9 @@ INSERT INTO items (name, category, price, rating, image_url, available) VALUES
 ('Uttapam', 'South Indian', 80.0, 4.3, 'https://via.placeholder.com/120?text=Uttapam', true),
 ('Gulab Jamun', 'Dessert', 50.0, 4.4, 'https://via.placeholder.com/120?text=Gulab+Jamun', true);
 
+INSERT INTO items (name, category, price, rating, image_url, available)
+VALUES ('Idli', 'South Indian', 30.0, 4.5, '/images/idly.jpg', true);
+
+
 
 
