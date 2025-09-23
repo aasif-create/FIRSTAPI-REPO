@@ -15,4 +15,3 @@ VALUES ('Idli', 'South Indian', 30.0, 4.5, '/images/idly.jpg', true);
 
 
 
-
