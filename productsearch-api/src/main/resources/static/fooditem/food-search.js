@@ -8,13 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     card.className = "food-card";
 
     const name = item.name || "Unknown";
-    const price = item.price !== undefined && item.price !== null ? `₹${item.price}` : "Price N/A";
-    const rating = item.rating !== undefined && item.rating !== null ? item.rating : "—";
+    const price = (item.price !== undefined && item.price !== null) ? `₹${item.price}` : "Price N/A";
+    const rating = (item.rating !== undefined && item.rating !== null) ? item.rating : "—";
     const category = item.category || "Uncategorized";
-    const img = item.imageUrl || "/fooditem/default-food.png";
+
+    let img = item.imageUrl || item.image_url || item.image || "/images/default-food.png";
+
+    if (typeof img === "string" && !/^https?:\/\//i.test(img) && !img.startsWith("/")) {
+      img = img.startsWith("images/") ? `/${img}` : `/${img}`;
+    }
 
     card.innerHTML = `
-      <img class="food-img" src="${img}" alt="${name}" onerror="this.src='/fooditem/default-food.png'">
+      <img class="food-img" src="${img}" alt="${name}" onerror="this.src='/images/default-food.png'">
       <div class="food-info">
         <h3 class="food-name">${name}</h3>
         <p class="food-price">${price}</p>
