@@ -279,4 +279,12 @@ body {
   font-size: 14px;
   background: rgba(255, 255, 255, 0.06);
   color: #fff;
+
+  .food-img {
+  width: 150px;   /* control size */
+  height: 150px;  /* makes it square */
+  object-fit: cover; /* crops nicely without stretching */
+  border-radius: 10px; /* optional: rounded corners */
+}
+
 }
