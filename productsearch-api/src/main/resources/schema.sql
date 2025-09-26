@@ -1,9 +1,9 @@
 CREATE TABLE items (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    category VARCHAR(255),
-    price DOUBLE,
-    rating DOUBLE,
-    image_url VARCHAR(500),
-    available BOOLEAN
+    id SERIAL PRIMARY KEY,         
+    name VARCHAR(100) NOT NULL,    
+    category VARCHAR(50) NOT NULL, 
+    price DECIMAL(10,2) NOT NULL,  
+    rating DECIMAL(2,1),           
+    image_url VARCHAR(255),        
+    available BOOLEAN DEFAULT true 
 );
