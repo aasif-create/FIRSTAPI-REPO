@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     card.innerHTML = `
-      <img class="food-img" src="${img}" alt="${name}" onerror="this.src='/images/default-food.png'">
+      <img class="food-img" src="${img}" alt="${name}" loading="lazy" width="240" height="160" style="width:240px;height:160px;object-fit:cover;display:block;flex-shrink:0;" onerror="this.src='/images/default-food.png'">
       <div class="food-info">
         <h3 class="food-name">${name}</h3>
         <p class="food-price">${price}</p>

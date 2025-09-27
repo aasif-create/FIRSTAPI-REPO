@@ -282,7 +282,7 @@ body {
 .food-info {
   flex: 1;
   text-align: left;
-  color: #000;
+  color: #f2f0f0;
 }
 
 @media (max-width: 720px) {
