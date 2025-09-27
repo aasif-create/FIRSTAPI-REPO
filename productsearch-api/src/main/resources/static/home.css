@@ -167,7 +167,7 @@ body {
 
 /* Flow container */
 .flow {
-  background-color:#070b04;
+  background-color:#dce0da;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -279,17 +279,6 @@ body {
   font-size: 14px;
   background: rgba(255, 255, 255, 0.06);
   color: #fff;
-}
-
-.food-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 12px auto;
-  max-width: 400px;   
-  padding: 12px;
-  background: #111;   
-  border-radius: 10px;
 }
 
 .food-card img.food-img {
