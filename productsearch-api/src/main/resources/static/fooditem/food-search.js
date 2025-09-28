@@ -2,7 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.getElementById("search-form");
   const searchInput = document.getElementById("search-input");
   const resultsDiv = document.getElementById("results");
-
+  const menuSection = document.getElementById('menu');
+  if (menuSection) {
+    menuSection.addEventListener('click', (ev) => {
+      const card = ev.target.closest('.card');
+      if (!card) return;
+      const nameEl = card.querySelector('.name');
+      if (!nameEl) return;
+      const itemName = nameEl.textContent.trim();
+      searchInput.value = itemName;
+      searchInput.focus();
+      searchInput.select();
+    });
+  }
   function renderItem(item) {
     const card = document.createElement("div");
     card.className = "food-card";
