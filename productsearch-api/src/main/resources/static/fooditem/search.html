@@ -1,22 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Search</title>
-  <link rel="stylesheet" href="\fooditem\fooditem.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Search & Menu</title>
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card-bg: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      --accent-1: #ff7a7a;
+      --accent-2: #ffd86b;
+      --accent-3: #7afcff;
+      --text: #f8fafc;
+      --muted: #9aa4b2;
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text)}
+
+    header{
+      padding:20px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    h1{margin:0;font-size:22px;letter-spacing:0.2px}
+
+    .controls{
+      display:flex;gap:10px;align-items:center;
+      flex-wrap:wrap;
+    }
+
+    form#search-form{display:flex;gap:8px;align-items:center}
+    #search-input{
+      min-width:220px;padding:10px 12px;border-radius:10px;border:0;outline:0;
+      background:rgba(255,255,255,0.03);color:var(--text);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    #search-form button{padding:10px 14px;border-radius:10px;border:0;background:var(--accent-1);color:#111;font-weight:600;cursor:pointer}
+    #search-form button:active{transform:translateY(1px)}
+
+    main{padding:20px 24px}
+
+    .grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;
+      margin-top:18px;
+    }
+
+    .card{
+      background:var(--card-bg);
+      border-radius:14px;overflow:hidden;position:relative;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+      transition:transform .18s ease, box-shadow .18s ease;
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;flex-direction:column;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
+
+    .card-media{
+      height:140px;overflow:hidden;background:linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.25));
+    }
+    .card-media img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .card-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+    .title-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .name{font-weight:700;font-size:16px}
+    .category{font-size:12px;color:var(--muted)}
+    .meta{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+
+    .price{font-weight:700;color:var(--text)}
+    .rating{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px}
+
+    .badges{display:flex;gap:8px;align-items:center}
+    .badge{padding:6px 8px;border-radius:999px;font-size:12px}
+    .available{background:linear-gradient(90deg,var(--accent-3),var(--accent-2));color:#052023}
+    .unavailable{background:#404754;color:#cbd5e1}
+
+    mark{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));padding:0 4px;border-radius:3px;color:#111}
+
+    .filters{display:flex;gap:8px;align-items:center}
+    .filter-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:10px;color:var(--text);cursor:pointer}
+    .filter-btn.active{border-color:rgba(255,255,255,0.08);box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+
+    .empty{padding:40px;border-radius:12px;text-align:center;color:var(--muted);background:rgba(255,255,255,0.01)}
+
+    /* Responsive tweaks */
+    @media (max-width:520px){
+      header{padding:14px}
+      .card-media{height:120px}
+      #search-input{min-width:140px}
+    }
+  </style>
 </head>
 <body>
-  <h1>Food Item Search</h1>
+  <header>
+    <h1>Food Menu — Search & Browse</h1>
+    <div class="controls">
+      <form id="search-form" onsubmit="return false;">
+        <input type="text" id="search-input" placeholder="Search by name, category..." autocomplete="off">
+        <button id="search-btn" type="submit">Search</button>
+      </form>
+      <div class="filters" id="category-filters" aria-label="Category filters"></div>
+    </div>
+  </header>
 
-  <form id="search-form">
-    <input type="text" id="search-input" placeholder="Enter food item" required>
-    <button type="submit">Search</button>
-  </form>
+  <main>
+    <div id="results" class="grid" aria-live="polite"></div>
+    <div id="empty" class="empty" style="display:none;margin-top:18px">No items matched your search.</div>
+  </main>
 
-  <div id="results"></div>
+  <script>
+    // Data: mirror of your SQL INSERT rows (update image paths as needed)
+    const items = [
+      {name: 'Idly', category: 'South Indian', price: 30.0, rating: 4.5, image_url: './images/idly.jpg', available: true},
+      {name: 'Masala Dosa', category: 'South Indian', price: 70.0, rating: 4.7, image_url: './images/masala_dosa.jpg', available: true},
+      {name: 'Sambar Vada', category: 'South Indian', price: 45.0, rating: 4.2, image_url: './images/sambar_vada.jpg', available: true},
+      {name: 'Chicken Biryani', category: 'Biryani', price: 150.0, rating: 4.8, image_url: './images/chicken_biryani.jpg', available: true},
+      {name: 'Paneer Butter Masala', category: 'North Indian', price: 140.0, rating: 4.6, image_url: './images/paneer_butter_masala.jpg', available: true},
+      {name: 'Poori', category: 'North Indian', price: 40.0, rating: 4.1, image_url: './images/poori.jpg', available: true},
+      {name: 'Rasam Rice', category: 'South Indian', price: 60.0, rating: 4.0, image_url: './images/rasam_rice.jpg', available: true},
+      {name: 'Hyderabadi Biryani', category: 'Biryani', price: 180.0, rating: 4.9, image_url: './images/hyderabadi_biryani.jpg', available: true},
+      {name: 'Uttapam', category: 'South Indian', price: 80.0, rating: 4.3, image_url: './images/uttapam.jpg', available: true},
+      {name: 'Gulab Jamun', category: 'Dessert', price: 50.0, rating: 4.4, image_url: './images/gulab_jamun.jpg', available: true}
+    ];
 
-  <script src="\fooditem\food-search.js"></script>
+    const resultsEl = document.getElementById('results');
+    const emptyEl = document.getElementById('empty');
+    const searchInput = document.getElementById('search-input');
+    const categoryFiltersEl = document.getElementById('category-filters');
+
+    // Utility: escape HTML
+    function escapeHtml(unsafe){
+      return unsafe.replace(/[&<>"]+/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+    }
+
+    // Build category buttons
+    function buildCategoryFilters(){
+      const cats = Array.from(new Set(items.map(i => i.category))).sort();
+      const allBtn = document.createElement('button');
+      allBtn.className = 'filter-btn active';
+      allBtn.textContent = 'All';
+      allBtn.dataset.cat = '';
+      allBtn.addEventListener('click', ()=>{selectCategory('')});
+      categoryFiltersEl.appendChild(allBtn);
+
+      cats.forEach(cat=>{
+        const b = document.createElement('button');
+        b.className = 'filter-btn';
+        b.textContent = cat;
+        b.dataset.cat = cat;
+        b.addEventListener('click', ()=>{selectCategory(cat)});
+        categoryFiltersEl.appendChild(b);
+      })
+    }
+
+    let activeCategory = '';
+    function selectCategory(cat){
+      activeCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.toggle('active', btn.dataset.cat===cat));
+      applyFilter();
+    }
+
+    // Highlight matched text in the item name
+    function highlight(text, term){
+      if(!term) return escapeHtml(text);
+      const t = text.toLowerCase();
+      const q = term.toLowerCase();
+      let i = t.indexOf(q);
+      if(i === -1) return escapeHtml(text);
+      // simple highlight - wrap first match
+      const before = escapeHtml(text.slice(0,i));
+      const match = escapeHtml(text.slice(i,i+q.length));
+      const after = escapeHtml(text.slice(i+q.length));
+      return `${before}<mark>${match}</mark>${after}`;
+    }
+
+    // Render cards
+    function render(list, searchTerm=''){
+      resultsEl.innerHTML = '';
+      if(!list.length){ emptyEl.style.display='block'; return; } else { emptyEl.style.display='none'; }
+
+      for(const it of list){
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const media = document.createElement('div'); media.className='card-media';
+        const img = document.createElement('img'); img.alt = it.name; img.src = it.image_url;
+        // fallback handler if image missing
+        img.onerror = ()=>{ img.src = 'https://via.placeholder.com/400x300?text=No+Image' };
+        media.appendChild(img);
+
+        const body = document.createElement('div'); body.className='card-body';
+        const titleRow = document.createElement('div'); titleRow.className='title-row';
+        const nameEl = document.createElement('div'); nameEl.className='name';
+        nameEl.innerHTML = highlight(it.name, searchTerm);
+        const priceEl = document.createElement('div'); priceEl.className='price'; priceEl.textContent = `₹${it.price.toFixed(0)}`;
+        titleRow.appendChild(nameEl); titleRow.appendChild(priceEl);
+
+        const catEl = document.createElement('div'); catEl.className='category'; catEl.textContent = it.category;
+
+        const meta = document.createElement('div'); meta.className='meta';
+        const rating = document.createElement('div'); rating.className='rating'; rating.textContent = `★ ${it.rating.toFixed(1)}`;
+        const badges = document.createElement('div'); badges.className='badges';
+        const avail = document.createElement('div'); avail.className = it.available ? 'badge available' : 'badge unavailable';
+        avail.textContent = it.available ? 'Available' : 'Unavailable';
+        badges.appendChild(avail);
+
+        meta.appendChild(rating); meta.appendChild(badges);
+
+        body.appendChild(titleRow); body.appendChild(catEl); body.appendChild(meta);
+
+        card.appendChild(media); card.appendChild(body);
+        resultsEl.appendChild(card);
+      }
+    }
+
+    // Filtering logic
+    function applyFilter(){
+      const q = searchInput.value.trim().toLowerCase();
+      let filtered = items.filter(it => {
+        const matchText = `${it.name} ${it.category}`.toLowerCase();
+        const matchesQuery = q === '' ? true : matchText.includes(q);
+        const matchesCategory = activeCategory === '' ? true : it.category === activeCategory;
+        return matchesQuery && matchesCategory;
+      });
+
+      render(filtered, searchInput.value.trim());
+    }
+
+    // Live search
+    searchInput.addEventListener('input', ()=>{ applyFilter(); });
+    document.getElementById('search-btn').addEventListener('click', ()=>{ applyFilter(); });
+
+    // init
+    buildCategoryFilters();
+    render(items);
+  </script>
 </body>
 </html>
-
