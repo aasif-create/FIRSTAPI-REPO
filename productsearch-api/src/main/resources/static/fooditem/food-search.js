@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultsDiv.innerHTML = "<p>Loading...</p>";
 
     try {
-      const res = await fetch(`/api/fooditem/search.html?query=${encodeURIComponent(query)}`, {
+      const res = await fetch(`/api/fooditem/search?query=${encodeURIComponent(query)}`, {
         headers: { "Accept": "application/json" }
       });
 
