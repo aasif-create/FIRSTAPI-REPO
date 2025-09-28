@@ -16,7 +16,7 @@ public class ItemController {
     }
 
     // GET /api/fooditem/search?query=...
-    @GetMapping("/fooditem/search.html")
+    @GetMapping("/fooditem/search")
     public List<Item> search(@RequestParam(value = "query", required = false) String query) {
         return svc.search(query);
     }

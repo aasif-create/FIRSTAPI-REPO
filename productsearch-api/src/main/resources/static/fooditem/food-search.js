@@ -9,11 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const img = document.createElement("img");
     img.className = "food-img";
-    let src = item.imageUrl || item.image_url || item.image || "/images/default-food.png";
-    if (typeof src === "string" && !/^https?:\/\//i.test(src) && !src.startsWith("/")) {
-      src = src.startsWith("images/") ? `/${src}` : `/${src}`;
-    }
-    img.src = src;
+    img.src = item.imageUrl || item.image_url || "/images/default-food.png";
     img.alt = item.name || "food";
     img.loading = "lazy";
     img.addEventListener("error", () => { img.src = "/images/default-food.png"; });
@@ -27,30 +23,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const priceEl = document.createElement("p");
     priceEl.className = "food-price";
-    priceEl.textContent = (item.price !== undefined && item.price !== null) ? `₹${item.price}` : "Price N/A";
+    priceEl.textContent = item.price != null ? `₹${item.price}` : "Price N/A";
 
     const ratingEl = document.createElement("p");
     ratingEl.className = "food-rating";
-    ratingEl.textContent = `⭐ ${item.rating !== undefined && item.rating !== null ? item.rating : "—"}`;
+    ratingEl.textContent = `⭐ ${item.rating != null ? item.rating : "—"}`;
 
     const categoryEl = document.createElement("p");
     categoryEl.className = "food-category";
     categoryEl.textContent = item.category || "Uncategorized";
 
-    info.appendChild(nameEl);
-    info.appendChild(priceEl);
-    info.appendChild(ratingEl);
-    info.appendChild(categoryEl);
-
-    card.appendChild(img);
-    card.appendChild(info);
+    info.append(nameEl, priceEl, ratingEl, categoryEl);
+    card.append(img, info);
 
     return card;
   }
 
   searchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const query = searchInput.value.trim();
     if (!query) {
       resultsDiv.innerHTML = "<p>Please enter a food name.</p>";
@@ -72,14 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       const items = Array.isArray(data) ? data : (data ? [data] : []);
 
+      resultsDiv.innerHTML = "";
       if (items.length === 0) {
         resultsDiv.innerHTML = "<p>No results found.</p>";
         return;
       }
 
-      resultsDiv.innerHTML = "";
       items.forEach(item => resultsDiv.appendChild(renderItem(item)));
-
     } catch (err) {
       console.error("Error fetching data:", err);
       resultsDiv.innerHTML = `<p>Error fetching results. Try again later.</p>
