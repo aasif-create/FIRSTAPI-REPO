@@ -7,26 +7,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "food-card";
 
-    const name = item.name || "Unknown";
-    const price = (item.price !== undefined && item.price !== null) ? `₹${item.price}` : "Price N/A";
-    const rating = (item.rating !== undefined && item.rating !== null) ? item.rating : "—";
-    const category = item.category || "Uncategorized";
-
-    let img = item.imageUrl || item.image_url || item.image || "/images/default-food.png";
-
-    if (typeof img === "string" && !/^https?:\/\//i.test(img) && !img.startsWith("/")) {
-      img = img.startsWith("images/") ? `/${img}` : `/${img}`;
+    const img = document.createElement("img");
+    img.className = "food-img";
+    let src = item.imageUrl || item.image_url || item.image || "/images/default-food.png";
+    if (typeof src === "string" && !/^https?:\/\//i.test(src) && !src.startsWith("/")) {
+      src = src.startsWith("images/") ? `/${src}` : `/${src}`;
     }
+    img.src = src;
+    img.alt = item.name || "food";
+    img.loading = "lazy";
+    img.addEventListener("error", () => { img.src = "/images/default-food.png"; });
 
-    card.innerHTML = `
-      <img class="food-img" src="${img}" alt="${name}" loading="lazy" width="240" height="160" style="width:240px;height:160px;object-fit:cover;display:block;flex-shrink:0;" onerror="this.src='/images/default-food.png'">
-      <div class="food-info">
-        <h3 class="food-name">${name}</h3>
-        <p class="food-price">${price}</p>
-        <p class="food-rating">⭐ ${rating}</p>
-        <p class="food-category">Category: ${category}</p>
-      </div>
-    `;
+    const info = document.createElement("div");
+    info.className = "food-info";
+
+    const nameEl = document.createElement("h3");
+    nameEl.className = "food-name";
+    nameEl.textContent = item.name || "Unknown";
+
+    const priceEl = document.createElement("p");
+    priceEl.className = "food-price";
+    priceEl.textContent = (item.price !== undefined && item.price !== null) ? `₹${item.price}` : "Price N/A";
+
+    const ratingEl = document.createElement("p");
+    ratingEl.className = "food-rating";
+    ratingEl.textContent = `⭐ ${item.rating !== undefined && item.rating !== null ? item.rating : "—"}`;
+
+    const categoryEl = document.createElement("p");
+    categoryEl.className = "food-category";
+    categoryEl.textContent = item.category || "Uncategorized";
+
+    info.appendChild(nameEl);
+    info.appendChild(priceEl);
+    info.appendChild(ratingEl);
+    info.appendChild(categoryEl);
+
+    card.appendChild(img);
+    card.appendChild(info);
+
     return card;
   }
 
