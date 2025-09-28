@@ -1,0 +1,98 @@
+:root {
+  --card-bg: #ffffff;
+  --card-color: #0b2030;
+  --muted: #7b7f86;
+  --accent: #2f8f3a;
+  --price-color: #0b2030;
+  --card-radius: 12px;
+  --card-shadow: 0 8px 28px rgba(4,8,12,0.18);
+}
+
+.food-card {
+  max-width: 420px;
+  background: var(--card-bg);
+  color: var(--card-color);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  margin: 14px auto;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.food-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.food-info {
+  padding: 14px 16px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 6px 12px;
+  align-items: center;
+}
+
+.food-name {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.12;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.food-rating {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: end;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  box-shadow: 0 6px 18px rgba(47,143,58,0.18);
+  min-width: 56px;
+  text-align: center;
+}
+
+.food-category {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.food-price {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-self: end;
+  color: var(--price-color);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .food-card { max-width: 100%; }
+  .food-img { height: 180px; }
+  .food-name { font-size: 18px; }
+  .food-rating { font-size: 13px; padding: 5px 8px; border-radius: 10px; }
+  .food-price { font-size: 14px; }
+}
