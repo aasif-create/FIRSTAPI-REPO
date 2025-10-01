@@ -1,11 +1,23 @@
+canvas#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: -1;
+  pointer-events: none;
+  background: #000;
+}
+
 body {
-  background-color: #071019;
   margin: 0;
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   color: #fff;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   text-align: center;
+  position: relative;
+  background: transparent;
 }
 
 .hero {
@@ -153,6 +165,11 @@ body {
 
 .flow {
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  flex-wrap: nowrap;
 }
 
 .flow.horizontal {
@@ -169,7 +186,6 @@ body {
   border-radius: var(--box-radius);
   padding: var(--box-padding);
   font-weight: 700;
-  box-shadow: 0 6px 16px rgba(254, 252, 252, 0.12);
   min-width: 140px;
   text-align: center;
   white-space: nowrap;
@@ -177,6 +193,9 @@ body {
   align-items: center;
   justify-content: center;
   font-size: var(--box-font-size);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55), 0 8px 28px rgba(255,160,40,0.06);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 
 .arrow{
@@ -211,9 +230,11 @@ body {
 }
 
 .card {
-  background: linear-gradient(135deg, #e4b25a, #e3b13c);
+  background: rgba(0,0,0,0.6);
   border-radius: 14px;
   padding: 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 -40px 80px rgba(0,0,0,0.25);
 }
 
 .search-panel {
@@ -249,7 +270,8 @@ body {
   border: none;
   outline: none;
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
   color: #fff;
 }
 
+.site-content { position: relative; z-index: 1; }
