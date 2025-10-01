@@ -152,12 +152,10 @@ body {
 }
 
 .flow {
-  background-color:#071019;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;
-  padding: 8px;
+  .flow {
+  background-color: transparent;
+}
+
 }
 
 .flow.horizontal {
