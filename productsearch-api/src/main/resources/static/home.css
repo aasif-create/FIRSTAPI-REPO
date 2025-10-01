@@ -122,6 +122,26 @@ canvas#stars{
   box-shadow:0 18px 60px rgba(0,0,0,0.6);
 }
 
+.card,
+.workflow.card {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 18px;
+}
+
+.box {
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 8px 24px rgba(255,140,0,0.06);
+}
+
+.hero, .hero .hero-inner {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
 .workflow-title{ text-align:center; font-size:20px; margin:6px 0 14px; font-weight:700; color:#fff; }
 
 .workflow-wrapper{ display:flex; justify-content:center; align-items:center; width:100%; overflow:auto; padding:8px; }
