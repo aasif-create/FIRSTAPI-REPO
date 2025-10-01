@@ -3,68 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRODUCT SEARCH — Star Background</title>
+  <title>PRODUCT SEARCH — Spring Boot API Project</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="home.css">
+
+  <style>
+    canvas#stars {
+      position: fixed;
+      inset: 0;
+      display: block;
+      z-index: -1;       
+      pointer-events: none;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Poppins", system-ui, Arial, sans-serif;
+      background: radial-gradient(circle at 20% 10%, #081627 0%, #021424 30%, #000814 100%);
+      color: #fff;
+    }
+
+    .hero, .workflow, .workflow.card {
+      position: relative;
+      z-index: 2;
+    }
+
+    .workflow.card {
+      background: rgba(3,8,12,0.45); 
+      backdrop-filter: blur(4px);    
+      padding: 24px;
+      border-radius: 12px;
+      margin: 28px auto;
+      max-width: 1100px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+    }
+
+   
+    .flow.vertical {
+      background: rgba(2,6,10,0.35);
+      padding: 28px;
+      border-radius: 10px;
+    }
+
+    .flow .box {
+      display: inline-block;
+      padding: 16px 26px;
+      border-radius: 18px;
+      background: rgba(255,140,0,0.92); 
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+      margin: 18px auto;
+      text-align: center;
+      min-width: 260px;
+    }
+
+    /* arrow styling preserved */
+    .arrow.vertical { text-align:center; margin: 8px 0; color: #ffd88f; font-weight:700; }
+
+    /* small responsive tweaks */
+    @media (max-width: 700px) {
+      .flow .box { min-width: 160px; padding: 12px 18px; font-size: 14px; }
+      .workflow.card { padding: 12px; margin: 18px; }
+    }
+  </style>
 </head>
 <body>
+
   <canvas id="stars" aria-hidden="true"></canvas>
 
-  <div class="site-content">
-    <header class="hero">
-      <div class="hero-inner">
-        <h1 class="title">FOOD PRODUCTS SEARCH</h1>
-        <p class="subtitle">SPRING BOOT API PROJECT</p>
-        <p class="tagline">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
-        <a class="try-btn try-btn-lg" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
-          <span class="btn-icon" aria-hidden="true">🍔</span>
-          <span class="btn-text">TRY NOW</span>
-        </a>
-      </div>
-    </header>
+  <header class="hero">
+    <div class="hero-inner" style="text-align:center; padding:36px 12px;">
+      <h1 class="title" style="font-size:64px; margin:0 0 8px; color:#ff9a00; text-shadow:0 8px 32px rgba(0,0,0,0.6)">FOOD PRODUCTS SEARCH</h1>
+      <p class="subtitle" style="font-size:30px; color:#2ee76b; margin:6px 0; font-weight:700; text-shadow:0 6px 16px rgba(0,0,0,0.35)">SPRING BOOT API PROJECT</p>
+      <p class="tagline" style="font-size:18px; margin:10px 0 18px; color:#fff;">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
+      <a class="try-btn" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search"
+         style="display:inline-block; background:linear-gradient(90deg,#5dfa3a,#15c64a); color:#fff; padding:14px 26px; border-radius:20px; text-decoration:none; font-weight:700; box-shadow:0 8px 30px rgba(21,198,74,0.18)">
+        <span class="btn-icon" aria-hidden="true">🍔</span>
+        <span class="btn-text">TRY NOW</span>
+      </a>
+    </div>
+  </header>
 
-    <main class="container">
-      <section class="card">
-        <h2 class="section-title">Basic Workflow of a product search</h2>
+  <section class="workflow card">
+    <h2 class="workflow-title" style="text-align:center; font-size:26px; margin-top:6px;">Basic Workflow of a product search</h2>
 
-        <div class="workflow-wrapper">
-          <div class="flow vertical" id="flow-vertical">
-            <div class="box">1.User [Searches an item]</div>
-            <div class="arrow vertical">↓</div>
+    <div class="workflow-box">
+      <section class="workflow card" style="background:transparent; box-shadow:none; padding:0; margin-top:18px;">
+        <div class="flow vertical" id="flow-vertical">
+          <div class="box">1.User [Searches an item ]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">2.Frontend [Shows typing box & sends search]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">2.Frontend [Shows typing box & sends search]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">3.API Controller [Passes the request inside]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">3.API Controller [Passes the request inside]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">4.Service Layer [Asks database for details]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">4.Service Layer [Asks database for details]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">6.Database [Finds matching items]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">6.Database [Finds matching items]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">8.Service Layer [Collects and organizes results]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">8.Service Layer [Collects and organizes results]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">9.API Controller [Sends results back]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">9.API Controller [Sends results back]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">10.Frontend [Displays results to user]</div>
-            <div class="arrow vertical">↓</div>
+          <div class="box">10.Frontend [Displays results to user]</div>
+          <div class="arrow vertical">↓</div>
 
-            <div class="box">11.User [Views / selects item]</div>
-          </div>
+          <div class="box">11.User [Views / selects item]</div>
         </div>
       </section>
-    </main>
-  </div>
+    </div>
+  </section>
 
   <script>
   (function(){
@@ -84,8 +147,8 @@
     setSize();
 
     function calcStarCount(){
-      if (Math.min(w,h) < 600) return Math.floor((w*h)/6000);
-      return Math.floor((w*h)/3000);
+      if (Math.min(w,h) < 600) return Math.floor((w*h)/5000);
+      return Math.floor((w*h)/2500);
     }
 
     let STAR_COUNT = calcStarCount();
@@ -103,10 +166,10 @@
         stars.push({
           r,
           angle,
-          size: Math.random()*1.8 + 0.3,
-          baseAlpha: 0.25 + Math.random()*0.75,
+          size: Math.random()*1.6 + 0.3,
+          baseAlpha: 0.2 + Math.random()*0.8,
           twinklePhase: Math.random()*Math.PI*2,
-          hue: 200 + Math.random()*140
+          hue: 190 + Math.random()*120
         });
       }
     }
@@ -123,14 +186,13 @@
     let last = performance.now();
     function loop(now){
       if (!running) return;
-      const dt = (now - last) / 1000;
-      last = now;
+      const dt = (now - last) / 1000; last = now;
       ctx.clearRect(0,0,w,h);
 
-      const g = ctx.createLinearGradient(0,0,0,h);
-      g.addColorStop(0, '#04050a');
-      g.addColorStop(0.5, '#071017');
-      g.addColorStop(1, '#000000');
+      const g = ctx.createRadialGradient(w*0.2, h*0.1, 40, w*0.5, h*0.6, Math.max(w,h));
+      g.addColorStop(0, 'rgba(40,80,130,0.05)');
+      g.addColorStop(0.5, 'rgba(10,20,40,0.18)');
+      g.addColorStop(1, 'rgba(0,0,0,0.9)');
       ctx.fillStyle = g;
       ctx.fillRect(0,0,w,h);
 
@@ -150,7 +212,7 @@
 
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, s.size*6);
         gradient.addColorStop(0, `hsla(${s.hue}, 90%, 66%, ${alpha})`);
-        gradient.addColorStop(0.45, `hsla(${s.hue}, 80%, 55%, ${alpha*0.28})`);
+        gradient.addColorStop(0.4, `hsla(${s.hue}, 80%, 55%, ${alpha*0.35})`);
         gradient.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -168,12 +230,13 @@
 
     requestAnimationFrame(loop);
 
+    // small API for runtime tweaks
     window._starfield = {
       regenerate: () => { initStars(); },
-      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/8000); initStars(); }
+      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/6000); initStars(); }
     };
 
-    setTimeout(() => { setSize(); initStars(); }, 120);
+    setTimeout(() => { setSize(); initStars(); }, 100);
   })();
   </script>
 </body>
