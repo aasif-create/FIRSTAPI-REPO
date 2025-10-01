@@ -3,56 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRODUCT SEARCH — Spring Boot API Project</title>
+  <title>PRODUCT SEARCH — Star Background</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <h1 class="title">FOOD PRODUCTS SEARCH</h1>
-      <p class="subtitle">SPRING BOOT API PROJECT</p>
-      <p class="tagline"> "A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
-      <p class="tagline"> ->Using Food Item Searching Example </p>
-    </div>
-    <a class="try-btn" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
-      <span class="btn-icon" aria-hidden="true">🍔</span>
-      <span class="btn-text">TRY NOW</span>
-    </a>
-  </header>
+  <div class="site-content">
+    <header class="hero">
+      <div class="hero-inner">
+        <h1 class="title">FOOD PRODUCTS SEARCH</h1>
+        <p class="subtitle">SPRING BOOT API PROJECT</p>
+        <p class="tagline">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
+        <a class="try-btn try-btn-lg" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
+          <span class="btn-icon" aria-hidden="true">🍔</span>
+          <span class="btn-text">TRY NOW</span>
+        </a>
+      </div>
+    </header>
 
-  <section class="workflow card">
-    <h2 class="workflow-title">Basic Workflow of a product search</h2>
-    <div class="workflow-box">
-      <section class="workflow card">
-        <div class="flow vertical" id="flow-vertical">
-          <div class="box">1.User [Searches an item ]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">2.Frontend [Shows typing box & sends search]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">3.API Controller [Passes the request inside]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">4.Service Layer [Asks database for details]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">6.Database [Finds matching items]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">8.Service Layer [Collects and organizes results]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">9.API Controller [Sends results back]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">10.Frontend [Displays results to user]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">11.User [Views / selects item]</div>
+    <main class="container">
+      <section class="card">
+        <h2 class="section-title">Basic Workflow of a product search</h2>
+
+        <div class="workflow-wrapper">
+          <div class="flow vertical" id="flow-vertical">
+            <div class="box">1.User [Searches an item]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">2.Frontend [Shows typing box & sends search]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">3.API Controller [Passes the request inside]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">4.Service Layer [Asks database for details]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">6.Database [Finds matching items]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">8.Service Layer [Collects and organizes results]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">9.API Controller [Sends results back]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">10.Frontend [Displays results to user]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">11.User [Views / selects item]</div>
+          </div>
         </div>
       </section>
-    </div>
-  </section>
+    </main>
+  </div>
 
   <script>
   (function(){
@@ -72,8 +84,8 @@
     setSize();
 
     function calcStarCount(){
-      if (Math.min(w,h) < 600) return Math.floor((w*h)/5000);
-      return Math.floor((w*h)/2500);
+      if (Math.min(w,h) < 600) return Math.floor((w*h)/6000);
+      return Math.floor((w*h)/3000);
     }
 
     let STAR_COUNT = calcStarCount();
@@ -91,32 +103,22 @@
         stars.push({
           r,
           angle,
-          size: Math.random()*1.6 + 0.3,
-          baseAlpha: 0.2 + Math.random()*0.8,
+          size: Math.random()*1.8 + 0.3,
+          baseAlpha: 0.25 + Math.random()*0.75,
           twinklePhase: Math.random()*Math.PI*2,
-          hue: 190 + Math.random()*120
+          hue: 200 + Math.random()*140
         });
       }
     }
     initStars();
 
-    window.addEventListener('resize', () => {
-      setSize();
-      initStars();
-    });
-
+    window.addEventListener('resize', () => { setSize(); initStars(); });
     window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
     window.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches[0]) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
+      if (e.touches && e.touches[0]) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; }
     }, { passive: true });
 
-    document.addEventListener('visibilitychange', () => {
-      running = !document.hidden;
-      if (running) requestAnimationFrame(loop);
-    });
+    document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) requestAnimationFrame(loop); });
 
     let last = performance.now();
     function loop(now){
@@ -125,10 +127,10 @@
       last = now;
       ctx.clearRect(0,0,w,h);
 
-      const g = ctx.createRadialGradient(w*0.2, h*0.1, 40, w*0.5, h*0.6, Math.max(w,h));
-      g.addColorStop(0, 'rgba(40,80,130,0.05)');
-      g.addColorStop(0.5, 'rgba(10,20,40,0.18)');
-      g.addColorStop(1, 'rgba(0,0,0,0.9)');
+      const g = ctx.createLinearGradient(0,0,0,h);
+      g.addColorStop(0, '#04050a');
+      g.addColorStop(0.5, '#071017');
+      g.addColorStop(1, '#000000');
       ctx.fillStyle = g;
       ctx.fillRect(0,0,w,h);
 
@@ -148,7 +150,7 @@
 
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, s.size*6);
         gradient.addColorStop(0, `hsla(${s.hue}, 90%, 66%, ${alpha})`);
-        gradient.addColorStop(0.4, `hsla(${s.hue}, 80%, 55%, ${alpha*0.35})`);
+        gradient.addColorStop(0.45, `hsla(${s.hue}, 80%, 55%, ${alpha*0.28})`);
         gradient.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -168,13 +170,11 @@
 
     window._starfield = {
       regenerate: () => { initStars(); },
-      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/6000); initStars(); }
+      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/8000); initStars(); }
     };
 
-    setTimeout(() => { setSize(); initStars(); }, 100);
-
+    setTimeout(() => { setSize(); initStars(); }, 120);
   })();
   </script>
-
 </body>
 </html>
