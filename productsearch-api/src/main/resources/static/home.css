@@ -1,3 +1,10 @@
+canvas#stars {
+  position: fixed;
+  inset: 0;
+  display: block;
+  z-index: -1;
+  pointer-events: none;
+}
 
 body {
   background-color: #071019;
@@ -153,12 +160,7 @@ body {
 }
 
 .flow {
-  background-color:#071019;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;
-  padding: 8px;
+  background-color: transparent;
 }
 
 .flow.horizontal {
