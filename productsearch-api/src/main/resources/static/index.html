@@ -3,90 +3,360 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRODUCT SEARCH — Spring Boot API Project</title>
+  <title>PRODUCT SEARCH — Spring Boot API Project (with Star Background)</title>
 
-  <!-- Fonts & page CSS (you can keep your home.css) -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="home.css">
 
   <style>
-    /* Star canvas sits behind everything */
+    /* ========== Canvas star background (behind everything) ========== */
     canvas#stars {
       position: fixed;
       inset: 0;
+      width: 100%;
+      height: 100%;
       display: block;
-      z-index: -1;       /* behind content */
+      z-index: -1;       /* behind page content */
       pointer-events: none;
+      background: linear-gradient(circle at 20% 10%, #081627 0%, #021424 30%, #000814 100%); /* fallback if script fails */
     }
 
-    /* Safety: ensure the body has a dark background if home.css doesn't */
+    /* ========== Your original CSS (with body background turned transparent) ========== */
     body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 20% 10%, #081627 0%, #021424 30%, #000814 100%);
-      color: #fff;
+      /* background-color: #071019;  <-- removed so star canvas shows through */
       margin: 0;
-      font-family: "Poppins", system-ui, Arial, sans-serif;
-    }
-
-    /* Content tweaks so your hero stays on top */
-    .content, .hero, .workflow {
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color: #fff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      /* ensure stacking context so canvas behind works */
       position: relative;
-      z-index: 2;
+      background: transparent;
     }
 
-    /* Optional: small tweak so the flow boxes remain visible over the stars */
-    .workflow.card { background: rgba(255,255,255,0.02); padding: 18px; border-radius: 10px; }
+    .hero {
+      padding: 40px 20px 30px;
+    }
+
+    .title {
+      font-size: 72px;
+      margin: 0;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-family: Algerian, "Poppins", system-ui, sans-serif;
+      color: #c87407;
+      text-shadow: 0 0 20px rgba(223, 95, 53, 0.7);
+      text-decoration: underline;
+      text-underline-offset: 10px;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      font-size: 38px;
+      font-family: Algerian, "Poppins", sans-serif;
+      font-weight: 700;
+      color: #3ecf12;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      text-decoration: underline;
+      text-underline-offset: 8px;
+    }
+
+    .tagline {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 12px 0;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    :root{
+      --btn-padding: 16px 34px;
+      --btn-radius: 14px;
+      --btn-font: 600 15px/1 "Inter", system-ui, Arial, sans-serif;
+      --shadow: 0 10px 30px rgba(26, 30, 50, 0.16);
+    }
+
+    .home-hero{
+      min-height: 60vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      background: linear-gradient(135deg, #fbfbff 0%, #eef6ff 100%);
+    }
+
+    .try-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      padding:var(--btn-padding);
+      border-radius:var(--btn-radius);
+      box-shadow:var(--shadow);
+      font:var(--btn-font);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .18s ease;
+      background: linear-gradient(90deg, #2dee0b 0%, #869e3e 50%, #5be207 100%);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-icon{
+      display:inline-grid;
+      place-items:center;
+      width:28px;
+      height:28px;
+      border-radius:8px;
+      background: rgba(255,255,255,0.14);
+      font-size:16px;
+      line-height:1;
+    }
+    .btn-text{ letter-spacing: 0.6px; }
+
+    .try-btn:hover{ transform: translateY(-4px); box-shadow: 0 18px 42px rgb(232, 232, 232); }
+    .try-btn:active{ transform: translateY(-1px); box-shadow: 0 8px 20px rgba(26,30,50,0.14); }
+    .try-btn:focus{ outline: 3px solid rgba(66, 153, 225, 0.22); outline-offset: 4px; }
+
+    .try-btn-lg{
+      padding: 28px 60px;
+      font: 700 22px/1 "Inter", system-ui, Arial, sans-serif;
+      border-radius: 22px;
+      gap: 18px;
+      box-shadow: 0 20px 50px rgba(221, 221, 222, 0.22);
+      background: linear-gradient(90deg, #ff6b6b 0%, #ff9f6b 45%, #ffd36b 100%);
+    }
+
+    .try-btn-lg .btn-icon{
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      font-size:20px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .try-btn-lg.dark{
+      background: linear-gradient(90deg,#3c5bb5,#12223d);
+      box-shadow: 0 22px 56px rgba(10,12,30,0.28);
+    }
+
+    @media (max-width:480px){
+      .try-btn-lg{
+        padding: 18px 36px;
+        font-size:18px;
+        border-radius:16px;
+        gap:12px;
+        width:90%;
+        justify-content:center;
+      }
+      .try-btn-lg .btn-icon{ width:32px; height:32px; font-size:18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .try-btn, .try-btn-lg{ transition: none; transform: none; }
+    }
+
+    :root{
+      --orange-1: #ff8a00;
+      --orange-2: #ffb347;
+      --box-text: #fff;
+      --arrow-color: #e9e911;
+      --box-radius: 10px;
+      --box-padding: 14px 22px;
+      --box-font-size: 16px;
+    }
+
+    .workflow-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto;
+      padding: 12px;
+    }
+
+    /* transparent flow so stars show through */
+    .flow {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .flow.horizontal {
+      flex-direction: row;
+    }
+
+    .flow.vertical {
+      flex-direction: column;
+    }
+
+    .box{
+      background: linear-gradient(135deg, var(--orange-1), var(--orange-2));
+      color: var(--box-text);
+      border-radius: var(--box-radius);
+      padding: var(--box-padding);
+      font-weight: 700;
+      box-shadow: 0 6px 16px rgba(254, 252, 252, 0.12);
+      min-width: 140px;
+      text-align: center;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--box-font-size);
+      /* subtle glow to stay readable over star background */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55), 0 8px 28px rgba(255,160,40,0.06);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+    }
+
+    .arrow{
+      font-size: 36px;
+      color: var(--arrow-color);
+      font-weight: 900;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      padding: 0 6px;
+    }
+
+    @media (max-width: 920px){
+      .box{ min-width: 120px; padding: 12px 16px; font-size: 14px; }
+      .arrow{ font-size: 28px; }
+    }
+
+    @media (max-width: 640px){
+      .flow.horizontal{
+        flex-direction: column;
+      }
+      .arrow{ transform: rotate(90deg); }
+      .arrow.vertical{ transform: rotate(90deg); }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 22px auto;
+      padding: 0 20px 60px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(228,178,90,0.06), rgba(227,177,60,0.04));
+      border-radius: 14px;
+      padding: 14px;
+      /* make slightly translucent so stars show gently behind */
+      backdrop-filter: blur(3px);
+    }
+
+    .search-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search-form .left {
+      flex: 1;
+    }
+
+    .search-form input[type="text"],
+    .search-form input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .search-form select {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+
+    /* small utility so main content sits above canvas */
+    .site-content { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
-
-  <!-- Fullscreen star canvas (background) -->
+  <!-- Star canvas (background) -->
   <canvas id="stars" aria-hidden="true"></canvas>
 
-  <!-- Your original page content -->
-  <header class="hero">
-    <div class="hero-inner">
-      <h1 class="title">FOOD PRODUCTS SEARCH</h1>
-      <p class="subtitle">SPRING BOOT API PROJECT</p>
-      <p class="tagline"> "A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
-      <p class="tagline"> ->Using Food Item Searching Example </p>
-    </div>
-    <a class="try-btn" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
-      <span class="btn-icon" aria-hidden="true">🍔</span>
-      <span class="btn-text">TRY NOW</span>
-    </a>
-  </header>
+  <div class="site-content">
+    <!-- header / hero -->
+    <header class="hero">
+      <div class="hero-inner" style="text-align:center; padding:36px 12px;">
+        <h1 class="title" style="font-size:64px; margin:0 0 8px;">FOOD PRODUCTS SEARCH</h1>
+        <p class="subtitle" style="font-size:30px; margin:6px 0 12px;">SPRING BOOT API PROJECT</p>
+        <p class="tagline" style="font-size:18px; margin-bottom:18px;">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
 
-  <section class="workflow card">
-    <h2 class="workflow-title">Basic Workflow of a product search</h2>
-    <div class="workflow-box">
-      <section class="workflow card">
-        <div class="flow vertical" id="flow-vertical">
-          <div class="box">1.User [Searches an item ]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">2.Frontend [Shows typing box & sends search]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">3.API Controller [Passes the request inside]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">4.Service Layer [Asks database for details]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">6.Database [Finds matching items]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">8.Service Layer [Collects and organizes results]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">9.API Controller [Sends results back]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">10.Frontend [Displays results to user]</div>
-          <div class="arrow vertical">↓</div>
-          <div class="box">11.User [Views / selects item]</div>
+        <a class="try-btn try-btn-lg" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
+          <span class="btn-icon" aria-hidden="true">🍔</span>
+          <span class="btn-text">TRY NOW</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Workflow -->
+    <section class="container">
+      <div class="card">
+        <h2 style="text-align:center; font-size:26px; margin:12px 0;">Basic Workflow of a product search</h2>
+        <div class="workflow-wrapper" aria-hidden="false" style="padding-top:18px;">
+          <div class="flow vertical" id="flow-vertical" style="width:100%; align-items:center;">
+            <div class="box">1.User [Searches an item ]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">2.Frontend [Shows typing box & sends search]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">3.API Controller [Passes the request inside]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">4.Service Layer [Asks database for details]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">5.Repository Layer/Data Access Layer [Runs query to fetch data]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">6.Database [Finds matching items]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">7.Repository Layer/Data Access Layer [Sends data back to service]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">8.Service Layer [Collects and organizes results]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">9.API Controller [Sends results back]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">10.Frontend [Displays results to user]</div>
+            <div class="arrow vertical">↓</div>
+
+            <div class="box">11.User [Views / selects item]</div>
+          </div>
         </div>
-      </section>
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 
   <!-- Starfield script -->
   <script>
@@ -106,9 +376,8 @@
     }
     setSize();
 
-    // Adaptive star count (lower on small screens)
     function calcStarCount(){
-      if (Math.min(w,h) < 600) return Math.floor((w*h)/5000); // mobile -> fewer
+      if (Math.min(w,h) < 600) return Math.floor((w*h)/5000);
       return Math.floor((w*h)/2500);
     }
 
@@ -130,42 +399,27 @@
           size: Math.random()*1.6 + 0.3,
           baseAlpha: 0.2 + Math.random()*0.8,
           twinklePhase: Math.random()*Math.PI*2,
-          hue: 190 + Math.random()*120 // bluish -> purple
+          hue: 190 + Math.random()*120
         });
       }
     }
     initStars();
 
-    // handle resize and re-init
-    window.addEventListener('resize', () => {
-      setSize();
-      initStars();
-    });
-
-    // mouse/touch parallax
+    window.addEventListener('resize', () => { setSize(); initStars(); });
     window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
     window.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches[0]) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
+      if (e.touches && e.touches[0]) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; }
     }, { passive: true });
 
-    // pause when tab hidden (save battery)
-    document.addEventListener('visibilitychange', () => {
-      running = !document.hidden;
-      if (running) requestAnimationFrame(loop);
-    });
+    document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) requestAnimationFrame(loop); });
 
-    // animation loop
     let last = performance.now();
     function loop(now){
       if (!running) return;
-      const dt = (now - last) / 1000;
-      last = now;
+      const dt = (now - last) / 1000; last = now;
       ctx.clearRect(0,0,w,h);
 
-      // faint nebula background gradient
+      // faint nebula background (keeps depth when stars sparse)
       const g = ctx.createRadialGradient(w*0.2, h*0.1, 40, w*0.5, h*0.6, Math.max(w,h));
       g.addColorStop(0, 'rgba(40,80,130,0.05)');
       g.addColorStop(0.5, 'rgba(10,20,40,0.18)');
@@ -207,20 +461,18 @@
       requestAnimationFrame(loop);
     }
 
-    // Start animation
+    // start animation
     requestAnimationFrame(loop);
 
-    // Expose a tiny API to change vibe from console if needed
+    // small runtime API
     window._starfield = {
       regenerate: () => { initStars(); },
       setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/6000); initStars(); }
     };
 
-    // initial focus fix: ensure we keep best DPI transform
-    setTimeout(() => { setSize(); initStars(); }, 100);
-
+    // safety re-init after load
+    setTimeout(() => { setSize(); initStars(); }, 120);
   })();
   </script>
-
 </body>
 </html>
