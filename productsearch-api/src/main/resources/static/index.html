@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRODUCT SEARCH — Spring Boot API Project (with Star Background)</title>
+  <title>PRODUCT SEARCH — Star Background</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
 </head>
@@ -12,11 +12,10 @@
 
   <div class="site-content">
     <header class="hero">
-      <div class="hero-inner" style="text-align:center; padding:36px 12px;">
-        <h1 class="title" style="font-size:64px; margin:0 0 8px;">FOOD PRODUCTS SEARCH</h1>
-        <p class="subtitle" style="font-size:30px; margin:6px 0 12px;">SPRING BOOT API PROJECT</p>
-        <p class="tagline" style="font-size:18px; margin-bottom:18px;">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
-
+      <div class="hero-inner">
+        <h1 class="title">FOOD PRODUCTS SEARCH</h1>
+        <p class="subtitle">SPRING BOOT API PROJECT</p>
+        <p class="tagline">"A SIMPLE PROJECT TO SHOWCASE HOW AN API WORKS"</p>
         <a class="try-btn try-btn-lg" href="\fooditem\search.html" role="button" aria-label="Try now — go to food search">
           <span class="btn-icon" aria-hidden="true">🍔</span>
           <span class="btn-text">TRY NOW</span>
@@ -24,12 +23,13 @@
       </div>
     </header>
 
-    <section class="container">
-      <div class="card">
-        <h2 style="text-align:center; font-size:26px; margin:12px 0;">Basic Workflow of a product search</h2>
-        <div class="workflow-wrapper" aria-hidden="false" style="padding-top:18px;">
-          <div class="flow vertical" id="flow-vertical" style="width:100%; align-items:center;">
-            <div class="box">1.User [Searches an item ]</div>
+    <main class="container">
+      <section class="card">
+        <h2 class="section-title">Basic Workflow of a product search</h2>
+
+        <div class="workflow-wrapper">
+          <div class="flow vertical" id="flow-vertical">
+            <div class="box">1.User [Searches an item]</div>
             <div class="arrow vertical">↓</div>
 
             <div class="box">2.Frontend [Shows typing box & sends search]</div>
@@ -62,8 +62,8 @@
             <div class="box">11.User [Views / selects item]</div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   </div>
 
   <script>
@@ -84,8 +84,8 @@
     setSize();
 
     function calcStarCount(){
-      if (Math.min(w,h) < 600) return Math.floor((w*h)/5000);
-      return Math.floor((w*h)/2500);
+      if (Math.min(w,h) < 600) return Math.floor((w*h)/6000);
+      return Math.floor((w*h)/3000);
     }
 
     let STAR_COUNT = calcStarCount();
@@ -103,10 +103,10 @@
         stars.push({
           r,
           angle,
-          size: Math.random()*1.6 + 0.3,
-          baseAlpha: 0.2 + Math.random()*0.8,
+          size: Math.random()*1.8 + 0.3,
+          baseAlpha: 0.25 + Math.random()*0.75,
           twinklePhase: Math.random()*Math.PI*2,
-          hue: 190 + Math.random()*120
+          hue: 200 + Math.random()*140
         });
       }
     }
@@ -127,10 +127,10 @@
       last = now;
       ctx.clearRect(0,0,w,h);
 
-      const g = ctx.createRadialGradient(w*0.2, h*0.1, 40, w*0.5, h*0.6, Math.max(w,h));
-      g.addColorStop(0, 'rgba(4,6,10,1)');
-      g.addColorStop(0.4, 'rgba(5,8,12,1)');
-      g.addColorStop(1, 'rgba(0,0,0,1)');
+      const g = ctx.createLinearGradient(0,0,0,h);
+      g.addColorStop(0, '#04050a');
+      g.addColorStop(0.5, '#071017');
+      g.addColorStop(1, '#000000');
       ctx.fillStyle = g;
       ctx.fillRect(0,0,w,h);
 
@@ -150,7 +150,7 @@
 
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, s.size*6);
         gradient.addColorStop(0, `hsla(${s.hue}, 90%, 66%, ${alpha})`);
-        gradient.addColorStop(0.4, `hsla(${s.hue}, 80%, 55%, ${alpha*0.35})`);
+        gradient.addColorStop(0.45, `hsla(${s.hue}, 80%, 55%, ${alpha*0.28})`);
         gradient.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -170,7 +170,7 @@
 
     window._starfield = {
       regenerate: () => { initStars(); },
-      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/6000); initStars(); }
+      setLowPowerMode: () => { STAR_COUNT = Math.floor((w*h)/8000); initStars(); }
     };
 
     setTimeout(() => { setSize(); initStars(); }, 120);
