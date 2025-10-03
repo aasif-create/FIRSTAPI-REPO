@@ -14,4 +14,8 @@ INSERT INTO items (name, category, price, rating, image_url, available) VALUES
 ('Veg Fried Rice', 'Chinese', 120.0, 4.2, '/images/veg_fried_rice.jpg', true),
 ('Chicken 65', 'Starter', 110.0, 4.6, '/images/chicken65.jpg', true),
 ('Chole Bhature', 'North Indian', 100.0, 4.5, '/images/chole_bhature.jpg', true),
-
+('Paneer Tikka', 'Starter', 130.0, 4.7, '/images/paneer_tikka.jpg', true),
+('Falooda', 'Dessert', 90.0, 4.3, '/images/falooda.jpg', true),
+('Filter Coffee', 'Beverage', 40.0, 4.8, '/images/filter_coffee.jpg', true),
+('Lassi', 'Beverage', 60.0, 4.6, '/images/lassi.jpg', true),
+('Ice Cream Sundae', 'Dessert', 120.0, 4.4, '/images/icecream_sundae.jpg', true);
